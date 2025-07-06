@@ -1,0 +1,150 @@
+@import "variables";
+
+.data-form {
+  max-width: 646px;
+
+  .data-form-block {
+
+    &:not(:last-child) {
+      margin-bottom: 30px;
+    }
+
+    .data-form-label {
+      margin-bottom: 20px;
+      color: $gray-text-color;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .data-form-label-additional {
+      font-size: 16px;
+      line-height: 130%;
+      color: $gray-text-color;
+      margin-bottom: 20px;
+      max-width: 528px;
+    }
+
+    .data-form-types {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 342px;
+      box-sizing: border-box;
+      font-size: 18px;
+      text-align: center;
+      border-radius: 3px;
+      border: 1px solid #519057;
+      color: $gray-text-color;
+
+      .data-form-type-item {
+        padding: 13px 35px;
+        cursor: pointer;
+        background-color: transparent;
+        box-sizing: border-box;
+
+        &:first-child {
+          border-top-left-radius: 2px;
+          border-bottom-left-radius: 2px;
+        }
+        &:last-child {
+          border-top-right-radius: 2px;
+          border-bottom-right-radius: 2px;
+        }
+
+        &.active {
+          background-color: #519057;
+          color: white;
+        }
+
+        &:hover:not(.active) {
+          background-color: $filter-color;
+        }
+      }
+    }
+
+    .data-form-inputs {
+      display: grid;
+      gap: 8px;
+
+      input {
+        height: 53px;
+      }
+
+      &.personal-data-inputs {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      &.address-inputs {
+        grid-template-columns: repeat(2, 125px) 162px;
+        grid-template-rows: 1fr 1fr;
+
+        .street {
+          grid-column: 1 / -1;
+        }
+      }
+
+      textarea.input {
+        resize: none;
+        width: 646px;
+        height: 130px;
+        box-sizing: border-box;
+      }
+    }
+
+    .data-form-radio {
+      label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        position: relative;
+
+        &:not(:last-child) {
+          margin-bottom: 12px;
+        }
+
+        .mark {
+          width: 18px;
+          height: 18px;
+          box-sizing: border-box;
+          border-radius: 50%;
+          border: 2px solid $border-color;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            box-sizing: border-box;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background-color: $border-color;
+            transition: .5s;
+            scale: 0;
+          }
+        }
+
+        input[type=radio] {
+          display: none;
+
+          &:checked {
+            & ~ span {
+              font-weight: 500;
+            }
+            & ~ .mark span {
+              scale: 1;
+            }
+          }
+        }
+
+        span {
+          color: $gray-text-color;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+<div class="cart" *ngIf="cart">
+  <div class="container">
+    <h2 class="cart-title">Корзина</h2>
+    <div class="cart-empty" *ngIf="!cart || cart.items.length === 0">
+      <div>В корзине нет товаров!</div>
+      <button class="button" routerLink="/catalog">В каталог</button>
+    </div>
+    <div class="cart-info" *ngIf="cart && cart.items.length > 0">
+      <div class="cart-products">
+        <div class="cart-product" *ngFor="let cartProduct of cart.items">
+          <div class="favorite-product-link" routerLink="/product/{{ cartProduct.product.url }}">
+            <div class="cart-product-image" [style.background-image]="'url(' + serverStaticPath + cartProduct.product.image + ')'"></div>
+            <div class="cart-product-name">{{ cartProduct.product.name }}</div>
+          </div>
+          <count-selector [count]="cartProduct.quantity" (onCountChange)="updateCount(cartProduct.product.id, $event)"></count-selector>
+          <div class="cart-product-price">{{ cartProduct.product.price }} BYN</div>
+          <svg class="cart-product-remove" (click)="updateCount(cartProduct.product.id, 0)" width="16" height="17" viewBox="0 0 16 17" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_1_1332)">
+              <line x1="1.93562" y1="3.50635" x2="13.9564" y2="15.5272" stroke="#A8ABA7" stroke-linecap="round"/>
+              <line x1="13.9238" y1="3.4864" x2="1.90301" y2="15.5072" stroke="#A8ABA7" stroke-linecap="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_1_1332">
+                <rect width="16" height="16" fill="white" transform="translate(0 0.856445)"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <div class="cart-details">
+        <div class="cart-details-info">
+          <div class="cart-details-info-title">Ваш заказ</div>
+          <div class="cart-details-info-item">Товаров:<span>{{ totalCount }}</span></div>
+          <div class="cart-details-info-item">Общая стоимость:<span>{{ totalAmount  }} BYN</span></div>
+          <div class="cart-details-info-delivery">* без учета доставки</div>
+        </div>
+        <div class="cart-details-actions">
+          <button class="button button-transparent" routerLink="/catalog">Продолжить покупки</button>
+          <button class="button" routerLink="/order">Оформить заказ</button>
+        </div>
+      </div>
+    </div>
+    <div class="extra-products">
+      <div class="carousel-header">
+        <div class="carousel-title">С этими товарами также покупают</div>
+        <div class="carousel-arrows">
+          <a class="move-backward" (click)="owlCarExtraProducts.prev()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M10.5561 15C10.4013 15 10.2465 14.9435 10.1243 14.8224L4.8127 9.55746C3.94915 8.70151 3.94915 7.29647 4.8127 6.44052L10.1243 1.17563C10.3606 0.941456 10.7516 0.941456 10.9879 1.17563C11.2241 1.40981 11.2241 1.7974 10.9879 2.03158L5.67624 7.29647C5.2852 7.68407 5.2852 8.31392 5.67624 8.70151L10.9879 13.9664C11.2241 14.2006 11.2241 14.5882 10.9879 14.8224C10.8657 14.9354 10.7109 15 10.5561 15Z"
+                fill="#202B21"/>
+            </svg>
+          </a>
+          <a class="move-forward" (click)="owlCarExtraProducts.next()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M5.44392 1C5.59871 1 5.75349 1.05652 5.87569 1.17765L11.1873 6.44254C12.0508 7.29849 12.0508 8.70353 11.1873 9.55948L5.87569 14.8244C5.63944 15.0585 5.2484 15.0585 5.01215 14.8244C4.7759 14.5902 4.7759 14.2026 5.01215 13.9684L10.3238 8.70353C10.7148 8.31593 10.7148 7.68608 10.3238 7.29849L5.01215 2.0336C4.7759 1.79942 4.7759 1.41182 5.01215 1.17765C5.13435 1.0646 5.28914 1 5.44392 1Z"
+                fill="#202B21"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="carousel-items">
+        <owl-carousel-o [options]="customOptionsExtraProducts" #owlCarExtraProducts>
+          <ng-template carouselSlide *ngFor="let product of extraProducts">
+            <product-card [isLight]="true" [product]="product"></product-card>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</div>

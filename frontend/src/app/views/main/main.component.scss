@@ -1,0 +1,257 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+
+.main {
+  background-image: url("../../../assets/images/page/main-bg.png");
+  background-repeat: no-repeat;
+  background-position: calc(50% + 210px) bottom;
+  padding: 58px 0 231px;
+
+  .container {
+
+    h1.main-title {
+      font-family: "Lora", sans-serif;
+      font-weight: 400;
+      font-size: 60px;
+      line-height: 130%;
+      color: $border-color;
+      margin-bottom: 67px;
+    }
+
+    p.main-text {
+      font-size: 18px;
+      line-height: 140%;
+      color: $green-text-color;
+      max-width: 528px;
+    }
+
+  }
+}
+
+.offers {
+  background-color: $light-green-color;
+  padding: 80px 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    .offer {
+      width: 600px;
+      padding: 35px;
+      box-sizing: border-box;
+      background-color: white;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+
+      h6.offer-title {
+        font-size: 20px;
+        color: $green-text-color;
+        line-height: 130%;
+        font-weight: 400;
+        margin: 0;
+      }
+
+      .offer-content {
+        display: flex;
+
+        img {
+          position: absolute;
+        }
+
+        p.offer-text {
+          font-size: 16px;
+          color: $green-text-color;
+          line-height: 130%;
+          margin: 0;
+          max-width: 234px;
+        }
+
+        .offer-inner-content {
+          display: flex;
+          flex-direction: column;
+          gap: 22px;
+          width: 338px;
+          flex-shrink: 0;
+        }
+      }
+
+      &.offer-inst {
+        h6.offer-title {
+          margin-bottom: 16px;
+        }
+
+        .offer-content {
+          justify-content: flex-end;
+
+          img {
+            left: 35px;
+            bottom: -2px;
+          }
+
+          a.button.offer-button {
+            width: 228px;
+            align-self: flex-end;
+          }
+        }
+      }
+
+      &.offer-collection {
+        h6.offer-title {
+          max-width: 362px;
+        }
+
+        .offer-content {
+          justify-content: flex-end;
+
+          img {
+            left: 116px;
+            bottom: 24px;
+          }
+
+          a.button.offer-button {
+            width: 177px;
+            margin-top: 75px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.best-products {
+  padding: 120px 0 130px;
+}
+
+.info {
+  padding: 80px 0;
+  background-color: $light-green-color;
+  background-image: url("../../../assets/images/page/info-image.png");
+  background-repeat: no-repeat;
+  background-position-x: calc(50% + 340px);
+
+  .container {
+    .info-title {
+      @include head-lora-32;
+      margin-bottom: 40px;
+    }
+
+    .info-item {
+      margin-top: 35px;
+      color: black;
+      max-width: 442px;
+
+      img {
+        margin-bottom: 30px;
+      }
+
+      .info-text {
+        font-size: 16px;
+
+        .info-text-extra {
+          font-family: "Montserrat", sans-serif;
+          font-weight: 300;
+          font-style: italic;
+          line-height: 130%;
+          margin-top: 8px;
+        }
+      }
+
+      &.info-delivery {
+        .info-text:not(:last-child) {
+          margin-bottom: 16px;
+        }
+      }
+
+      &.info-payment {
+        .info-text:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+.reviews {
+  padding: 130px 0;
+  background-color: white;
+
+  .container {
+    .reviews-title {
+      @include head-lora-32;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .reviews-carousel {
+      position: relative;
+
+      .review-item {
+        width: 396px;
+        height: 267px;
+        padding: 30px;
+        border: 2px solid $border-color;
+        border-radius: 10px;
+        box-sizing: border-box;
+
+        .review-item-head {
+          display: flex;
+          align-items: center;
+          gap: 26px;
+
+          .review-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+          }
+
+          .review-item-name {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: $green-text-color;
+          }
+        }
+
+        .review-item-text {
+          margin-top: 15px;
+          font-size: 16px;
+          line-height: 140%;
+          color: $gray-text-color;
+        }
+      }
+
+      .reviews-arrows {
+        display: flex;
+
+        a {
+          top: calc(50% - 5px);
+          display: flex;
+          position: absolute;
+          cursor: pointer;
+
+          &.move-backward {
+            left: -41px;
+          }
+
+          &.move-forward {
+            right: -41px;
+          }
+
+          &:hover {
+            svg path {
+              fill: $footer-bg-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.map iframe {
+  vertical-align: bottom;
+}

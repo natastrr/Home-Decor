@@ -1,0 +1,65 @@
+<div class="info">
+  <div class="container">
+    <h2 class="personal-title">Личный кабинет</h2>
+    <div class="personal-pages-selector">
+      <div class="personal-page active">Личные данные</div>
+      <div class="personal-page" routerLink="/orders">Ваши заказы</div>
+    </div>
+    <div class="data-form" [formGroup]="userInfoForm">
+      <div class="data-form-block">
+        <div class="data-form-label">Личные данные</div>
+        <div class="data-form-label-additional">Введённые данные автоматически подставятся при оформлении заказа.</div>
+        <div class="data-form-inputs personal-data-inputs">
+          <input type="text" class="input" placeholder="Фамилия" formControlName="lastName">
+          <input type="text" class="input" placeholder="Имя" formControlName="firstName">
+          <input type="text" class="input" placeholder="Отчество" formControlName="fatherName">
+          <input type="tel" class="input" placeholder="Телефон" formControlName="phone">
+          <input type="email" class="input" placeholder="E-mail" formControlName="email" [style.border-color]="email?.invalid && (email?.touched || email?.dirty) ? 'red' : ''">
+        </div>
+      </div>
+      <div class="data-form-block">
+        <div class="data-form-label">Адрес доставки</div>
+        <div class="data-form-inputs address-inputs">
+          <input type="text" class="input street" placeholder="Улица" formControlName="street">
+          <input type="number" class="input" placeholder="№ дома" formControlName="house">
+          <input type="number" class="input" placeholder="Подъезд" formControlName="entrance">
+          <input type="number" class="input" placeholder="№ квартиры" formControlName="apartment">
+        </div>
+      </div>
+      <div class="data-form-block">
+        <div class="data-form-label">Предпочитаемый способ доставки</div>
+        <div class="data-form-types">
+          <div class="data-form-type-item" [class.active]="deliveryType === deliveryTypes.delivery"
+               (click)="changeDeliveryType(deliveryTypes.delivery)">Курьером
+          </div>
+          <div class="data-form-type-item" [class.active]="deliveryType === deliveryTypes.self"
+               (click)="changeDeliveryType(deliveryTypes.self)">Самовывоз
+          </div>
+        </div>
+      </div>
+      <div class="data-form-block">
+        <div class="data-form-label">Предпочитаемый способ оплаты</div>
+        <div class="data-form-radio">
+          <label>
+            <input type="radio" value="{{ paymentTypes.cardOnline}}" formControlName="paymentType">
+            <div class="mark"><span></span></div>
+            <span>Оплата банковской картой в интернет-магазине</span>
+          </label>
+          <label>
+            <input type="radio" value="{{ paymentTypes.cardToCourier}}" formControlName="paymentType">
+            <div class="mark"><span></span></div>
+            <span>Безналичный расчет при получении</span>
+          </label>
+          <label>
+            <input type="radio" value="{{ paymentTypes.cashToCourier}}" formControlName="paymentType">
+            <div class="mark"><span></span></div>
+            <span>Наличный расчет при получении</span>
+          </label>
+        </div>
+      </div>
+      <button class="button" [disabled]="!(userInfoForm.dirty && userInfoForm.valid)" (click)="updateUserInfo()">Сохранить</button>
+    </div>
+  </div>
+  <div class="page-image"><img src="/assets/images/page/main-bg.png" alt="Растения"></div>
+</div>
+

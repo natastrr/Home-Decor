@@ -1,0 +1,22 @@
+@import "../../../../assets/styles/variables";
+
+.count-selector {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+
+  svg {
+    cursor: pointer;
+
+    &:hover:not(.disabled) path {
+      fill: $buttons-color;
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      path {
+        fill: $gray;
+      }
+    }
+  }
+}

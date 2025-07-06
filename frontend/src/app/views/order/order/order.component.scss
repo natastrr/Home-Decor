@@ -1,0 +1,103 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/data-form";
+
+.order {
+  padding: 86px 0 107px;
+
+  .container {
+
+    .order-title {
+      margin: 0;
+      @include head-lora-32;
+    }
+
+    .order-info {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+
+      .order-details {
+        width: 422px;
+
+        .order-details-info {
+          background-color: $filter-color;
+          border-radius: 5px;
+          padding: 40px;
+          margin-bottom: 14px;
+
+          .order-details-info-title {
+            font-family: "Lora", sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 26px;
+            color: $green-text-color;
+            margin-bottom: 20px;
+          }
+
+          .order-details-info-item {
+            color: $gray-text-color;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            &:not(:last-child) {
+              margin-bottom: 10px;
+            }
+
+            span {
+              font-weight: 500;
+              font-size: 20px;
+            }
+
+            &:last-child, &:last-child span {
+              font-weight: 600;
+            }
+          }
+        }
+
+        .button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.order-popup {
+  padding: 100px 70px 220px;
+  background-color: white;
+  text-align: center;
+  color: $green-text-color;
+  background-image: url("../../../../assets/images/page/popup-image.png");
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  svg {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+
+    &:hover {
+      line {
+        stroke: $buttons-color;
+      }
+    }
+  }
+
+  .order-popup-title {
+    @include head-lora-32;
+    margin-bottom: 40px;
+  }
+
+  .order-popup-text div {
+    font-size: 20px;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+}

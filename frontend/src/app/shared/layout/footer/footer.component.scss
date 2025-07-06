@@ -1,0 +1,125 @@
+@import "../../../../assets/styles/variables";
+
+footer.footer {
+  padding: 39px 0 50px;
+  background-color: $footer-bg-color;
+  color: $gray-text-color;
+
+  .container {
+    display: flex;
+    align-items: start;
+
+    .logo {
+      margin-right: 63px;
+      cursor: pointer;
+
+      img {
+        mix-blend-mode: multiply;
+      }
+
+    }
+
+    .footer-blocks {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .footer-block {
+        margin-top: 11px;
+
+        .footer-head {
+          font-family: "Montserrat", sans-serif;
+          font-weight: 500;
+          font-size: 16px;
+          margin-bottom: 25px;
+          text-transform: uppercase;
+        }
+
+        .footer-items {
+          ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+              &:not(:last-child) {
+                margin-bottom: 11px;
+              }
+
+              a {
+                font-size: 16px;
+                color: $gray-text-color;
+                text-decoration: none;
+                cursor: pointer;
+
+                &:hover {
+                  color: $buttons-color;
+                }
+              }
+            }
+          }
+        }
+
+        .footer-social {
+          display: flex;
+          align-items: center;
+          margin-top: -10px;
+          gap: 12px;
+          margin-bottom: 55px;
+
+          a {
+            cursor: pointer;
+
+            &:hover {
+              svg path {
+                fill: $buttons-color;
+              }
+            }
+          }
+        }
+
+        .footer-payment {
+          display: grid;
+          grid-template-columns: repeat(3, 70px);
+          gap: 10px;
+          max-width: 230px;
+
+          .payment-item {
+            height: 35px;
+            background-position: top;
+          }
+        }
+
+        &.footer-contacts {
+          max-width: 253px;
+
+          .footer-contact {
+            font-size: 16px;
+
+            &:not(:last-child) {
+              margin-bottom: 15px;
+            }
+
+            .footer-contact-head {
+              font-weight: 500;
+              margin-bottom: 6px;
+            }
+
+            .footer-contact-info {
+              line-height: 130%;
+
+              a {
+                color: $gray-text-color;
+                text-decoration: none;
+
+                &:hover {
+                  color: $buttons-color;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

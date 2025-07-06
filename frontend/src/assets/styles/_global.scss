@@ -1,0 +1,239 @@
+@import "variables";
+@import "mixins";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+}
+
+.input {
+  padding: 17px 20px;
+  border: 2px solid $border-color;
+  border-radius: 3px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: $border-color;
+  outline: none;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: #a8aba7;
+  }
+
+  &:focus {
+    border-color: darkseagreen;
+  }
+}
+
+.small-input {
+  border: 1px solid $small-input-color;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px;
+  box-sizing: border-box;
+  width: 40px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: $green-text-color;
+  outline: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.button {
+  text-align: center;
+  padding: 15px;
+  background-color: $buttons-color;
+  border: 1px solid $buttons-color;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  transition: .3s;
+
+  &:hover:not(:disabled) {
+    background-color: $footer-bg-color;
+    border-color: $footer-bg-color;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $gray;
+    border-color: $gray;
+  }
+
+  &.button-transparent {
+    background-color: transparent;
+    border: 1px solid $small-input-color;
+    color: $green-text-color;
+
+    &:hover:not(:disabled) {
+      background-color: $buttons-color;
+      border-color: $buttons-color;
+      color: white;
+
+      svg path {
+        fill: white;
+      }
+    }
+
+    &:disabled {
+      border-color: $gray;
+      color: $gray;
+
+      svg path {
+        fill: $gray;
+      }
+    }
+  }
+
+  &.button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  &.button-in-cart {
+    span {
+      &:first-child {
+        display: block;
+      }
+
+      &:last-child {
+        display: none;
+      }
+    }
+
+    &:hover {
+      span {
+        &:first-child {
+          display: none;
+        }
+
+        &:last-child {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+a.button {
+  text-decoration: none;
+  display: block;
+  box-sizing: border-box;
+}
+
+.header-menu .mat-menu-content:not(:empty) {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mat-menu-item {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: $gray-text-color;
+}
+
+.mat-menu-item:hover:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]),
+.mat-menu-item.cdk-keyboard-focused:not([disabled]), .mat-menu-item-highlighted:not([disabled]) {
+  background-color: $light-green-medium;
+}
+
+snack-bar-container.mat-snack-bar-container {
+  background-color: $buttons-color;
+  color: white;
+  border-radius: 5px;
+}
+
+.mat-simple-snackbar {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+}
+
+simple-snack-bar.mat-simple-snackbar {
+  justify-content: center;
+}
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid $gray-text-color;
+  border-radius: 3px;
+  flex-shrink: 0;
+  cursor: pointer;
+  outline: none;
+
+  &:checked {
+    border-color: #519057;
+    position: relative;
+    background-image: url("/assets/images/icons/check-mak.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+label {
+  user-select: none;
+}
+
+.carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+
+  .carousel-title {
+    @include head-lora-32;
+  }
+
+  .carousel-arrows {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    a {
+      cursor: pointer;
+
+      &:hover {
+        svg path {
+          fill: $small-input-color;
+        }
+      }
+    }
+  }
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 10px !important;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: $footer-bg-color;
+}

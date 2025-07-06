@@ -1,0 +1,32 @@
+<div class="product-card" *ngIf="product" (click)="navigate()" [class.is-light]="isLight">
+  <div class="product-card-fave" *ngIf="isLoggedIn && !isLight" updateFavorite [product]="product" [class.in-fave]="product.isInFave">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="heart"
+            d="M11.9997 20.8457C11.7155 20.8457 11.4405 20.8091 11.2113 20.7266C7.70967 19.5257 2.14551 15.2632 2.14551 8.96572C2.14551 5.75739 4.73967 3.15405 7.92967 3.15405C9.47884 3.15405 10.9272 3.75905 11.9997 4.84072C13.0722 3.75905 14.5205 3.15405 16.0697 3.15405C19.2597 3.15405 21.8538 5.76655 21.8538 8.96572C21.8538 15.2724 16.2897 19.5257 12.788 20.7266C12.5588 20.8091 12.2838 20.8457 11.9997 20.8457ZM7.92967 4.52905C5.50051 4.52905 3.52051 6.51822 3.52051 8.96572C3.52051 15.2266 9.54301 18.7099 11.6605 19.4341C11.8255 19.4891 12.183 19.4891 12.348 19.4341C14.4563 18.7099 20.488 15.2357 20.488 8.96572C20.488 6.51822 18.508 4.52905 16.0788 4.52905C14.6855 4.52905 13.393 5.17989 12.5588 6.30739C12.3022 6.65572 11.7155 6.65572 11.4588 6.30739C10.6063 5.17072 9.32301 4.52905 7.92967 4.52905Z"
+            fill="#383838"/>
+      <path class="heart-fill"
+            d="M7.92967 4.5293C5.50051 4.5293 3.52051 6.51846 3.52051 8.96596C3.52051 15.2268 9.54301 18.7101 11.6605 19.4343C11.8255 19.4893 12.183 19.4893 12.348 19.4343C14.4563 18.7101 20.488 15.236 20.488 8.96596C20.488 6.51846 18.508 4.5293 16.0788 4.5293C14.6855 4.5293 13.393 5.18013 12.5588 6.30763C12.3022 6.65596 11.7155 6.65596 11.4588 6.30763C10.6063 5.17096 9.32301 4.5293 7.92967 4.5293Z"
+            fill="transparent"/>
+    </svg>
+  </div>
+  <div class="product-card-image" [style.background-image]="'url(' + serverStaticPath + product.image + ')'"></div>
+  <div class="product-card-name">{{ product.name }}</div>
+  <div class="product-card-info" *ngIf="!isLight">
+    <div class="product-card-price">{{ product.price }} BYN</div>
+    <button class="button" *ngIf="!countInCart" (click)="addToCart()">В корзину</button>
+    <button class="button button-transparent button-in-cart" *ngIf="countInCart" (click)="removeFromCart()">
+      <span>В корзине</span><span>Удалить</span>
+    </button>
+  </div>
+  <div class="product-card-extra" *ngIf="!isLight">
+    <count-selector [count]="count" (onCountChange)="updateCount($event)"></count-selector>
+    <a [routerLink]="'/product/' + product.url" class="product-card-detail">
+      <svg width="18" height="4" viewBox="0 0 18 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="2.66699" cy="2" r="2" fill="#9AA89B"/>
+        <circle cx="9.33398" cy="2" r="2" fill="#9AA89B"/>
+        <circle cx="16" cy="2" r="2" fill="#9AA89B"/>
+      </svg>
+      <span>Подробнее</span>
+    </a>
+  </div>
+</div>

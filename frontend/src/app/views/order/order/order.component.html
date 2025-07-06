@@ -1,0 +1,99 @@
+<div class="order">
+  <div class="container">
+    <h2 class="order-title">Оформление вашего заказа</h2>
+    <div class="order-info">
+      <div class="data-form" [formGroup]="orderForm">
+        <div class="data-form-block">
+          <div class="data-form-label">Выберите способ доставки</div>
+          <div class="data-form-types">
+            <div class="data-form-type-item" [class.active]="deliveryType === deliveryTypes.delivery"
+                 (click)="changeDeliveryType(deliveryTypes.delivery)">Курьером
+            </div>
+            <div class="data-form-type-item" [class.active]="deliveryType === deliveryTypes.self"
+                 (click)="changeDeliveryType(deliveryTypes.self)">Самовывоз
+            </div>
+          </div>
+        </div>
+        <div class="data-form-block">
+          <div class="data-form-label">Заполните личные данные</div>
+          <div class="data-form-inputs personal-data-inputs">
+            <input type="text" class="input" placeholder="Фамилия" formControlName="lastName"
+                   [style.border-color]="lastName?.invalid && (lastName?.touched || lastName?.dirty) ? 'red' : ''">
+            <input type="text" class="input" placeholder="Имя" formControlName="firstName"
+                   [style.border-color]="firstName?.invalid && (firstName?.touched || firstName?.dirty) ? 'red' : ''">
+            <input type="text" class="input" placeholder="Отчество" formControlName="fatherName">
+            <input type="tel" class="input" placeholder="Телефон" formControlName="phone"
+                   [style.border-color]="phone?.invalid && (phone?.touched || phone?.dirty) ? 'red' : ''">
+            <input type="email" class="input" placeholder="E-mail" formControlName="email"
+                   [style.border-color]="email?.invalid && (email?.touched || email?.dirty) ? 'red' : ''">
+          </div>
+        </div>
+        <div class="data-form-block" *ngIf="deliveryType !== deliveryTypes.self">
+          <div class="data-form-label">Заполните адрес доставки</div>
+          <div class="data-form-inputs address-inputs">
+            <input type="text" class="input street" placeholder="Улица" formControlName="street"
+                   [style.border-color]="street?.invalid && (street?.touched || street?.dirty) ? 'red' : ''">
+            <input type="number" class="input" placeholder="№ дома" formControlName="house"
+                   [style.border-color]="house?.invalid && (house?.touched || house?.dirty) ? 'red' : ''">
+            <input type="number" class="input" placeholder="Подъезд" formControlName="entrance"
+                   [style.border-color]="entrance?.invalid && (entrance?.touched || entrance?.dirty) ? 'red' : ''">
+            <input type="number" class="input" placeholder="№ квартиры" formControlName="apartment"
+                   [style.border-color]="apartment?.invalid && (apartment?.touched || apartment?.dirty) ? 'red' : ''">
+          </div>
+        </div>
+        <div class="data-form-block">
+          <div class="data-form-label">Выберите способ оплаты</div>
+          <div class="data-form-radio">
+            <label>
+              <input type="radio" value="{{ paymentTypes.cardOnline}}" formControlName="paymentType">
+              <div class="mark"><span></span></div>
+              <span>Оплата банковской картой в интернет-магазине</span>
+            </label>
+            <label>
+              <input type="radio" value="{{ paymentTypes.cardToCourier}}" formControlName="paymentType">
+              <div class="mark"><span></span></div>
+              <span>Безналичный расчет при получении</span>
+            </label>
+            <label>
+              <input type="radio" value="{{ paymentTypes.cashToCourier}}" formControlName="paymentType">
+              <div class="mark"><span></span></div>
+              <span>Наличный расчет при получении</span>
+            </label>
+          </div>
+        </div>
+        <div class="data-form-block">
+          <div class="data-form-label">Комментарий к заказу (необязательно)</div>
+          <div class="data-form-inputs">
+            <textarea placeholder="Оставьте свой комментарий..." class="input" formControlName="comment"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="order-details">
+        <div class="order-details-info">
+          <div class="order-details-info-title">Ваш заказ</div>
+          <div class="order-details-info-item">Товаров:<span>{{ totalCount }}</span></div>
+          <div class="order-details-info-item">Общая стоимость:<span>{{ totalAmount }} BYN</span></div>
+          <div class="order-details-info-item">Стоимость доставки:<span>{{ shippingCost }} BYN</span></div>
+          <div class="order-details-info-item">Итоговая стоимость:<span>{{ totalAmount + shippingCost }} BYN</span>
+          </div>
+        </div>
+        <button class="button" (click)="createOrder()">Подтвердить заказ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #popup>
+  <div class="order-popup">
+    <svg (click)="closePopup()" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0.935622" y1="0.649902" x2="12.9564" y2="12.6707" stroke="#A8ABA7" stroke-linecap="round"/>
+      <line x1="12.9238" y1="0.629714" x2="0.903013" y2="12.6505" stroke="#A8ABA7" stroke-linecap="round"/>
+    </svg>
+    <div class="order-popup-title">Благодарим за заказ!</div>
+    <div class="order-popup-text">
+      <div>Ваш заказ оформлен.</div>
+      <div>Вся информация о заказе была выслана вам на почту.</div>
+      <div>Курьер свяжется с вами за два часа до доставки товара.</div>
+    </div>
+  </div>
+</ng-template>

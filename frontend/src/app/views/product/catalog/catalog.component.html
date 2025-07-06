@@ -1,0 +1,84 @@
+<section class="catalog">
+  <div class="container">
+    <h2 class="catalog-title">Каталог</h2>
+    <div class="catalog-head">
+      <div class="catalog-applied-filters">
+        <div class="catalog-applied-filter" *ngFor="let appliedFilter of  appliedFilters">
+          <span>{{ appliedFilter.name }}</span>
+          <a (click)="removeAppliedFilter(appliedFilter)">
+            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_20417_954)">
+                <line x1="1.93562" y1="3.1499" x2="13.9564" y2="15.1707" stroke="#A8ABA7" stroke-linecap="round"/>
+                <line x1="13.9238" y1="3.12996" x2="1.90301" y2="15.1508" stroke="#A8ABA7" stroke-linecap="round"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_20417_954">
+                  <rect width="16" height="16" fill="white" transform="translate(0 0.5)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="catalog-sorting" [class.open]="sortingOpen" (click)="toggleSorting()">
+        <div class="catalog-sorting-head">
+          <span>Сортировать</span>
+          <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.0003 14.5C9.41693 14.5 8.83359 14.275 8.39193 13.8334L2.95859 8.40003C2.71693 8.15837 2.71693 7.75837 2.95859 7.5167C3.20026 7.27503 3.60026 7.27503 3.84193 7.5167L9.27526 12.95C9.67526 13.35 10.3253 13.35 10.7253 12.95L16.1586 7.5167C16.4003 7.27503 16.8003 7.27503 17.0419 7.5167C17.2836 7.75837 17.2836 8.15837 17.0419 8.40003L11.6086 13.8334C11.1669 14.275 10.5836 14.5 10.0003 14.5Z"
+              fill="#2C2C2C"/>
+          </svg>
+        </div>
+        <div class="catalog-sorting-body">
+          <div class="catalog-sorting-item" *ngFor="let sortingOption of sortingOptions"
+               (click)="sort(sortingOption.value)"
+               [class.active]="activeParams.sort ? activeParams.sort === sortingOption.value : false">
+            {{ sortingOption.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="catalog-layout">
+      <div class="catalog-filters">
+        <category-filter *ngFor="let categoryWithTypes of categoriesWithTypes"
+                         [categoryWithTypes]="categoryWithTypes"></category-filter>
+        <category-filter type="height"></category-filter>
+        <category-filter type="diameter"></category-filter>
+      </div>
+      <div class="catalog-products">
+        <product-card *ngFor="let product of products" [product]="product" [countInCart]="product.countInCart"></product-card>
+        <div class="products-not-found" *ngIf="pages.length === 0 && appliedFilters.length > 0">
+          Товары не найдены!<br>Попробуйте изменить параметры поиска.
+        </div>
+      </div>
+    </div>
+    <div class="pagination" *ngIf="pages.length > 1">
+      <div class="pagination-arrow" [class.disabled]="activeParams.page ? activeParams.page === 1 : true" (click)="openPrevPage()">
+        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M9.56988 5.98092C9.75988 5.98092 9.94988 6.04973 10.0999 6.19717C10.3899 6.48223 10.3899 6.95405 10.0999 7.2391L4.55988 12.6847L10.0999 18.1303C10.3899 18.4153 10.3899 18.8871 10.0999 19.1722C9.80988 19.4573 9.32988 19.4573 9.03988 19.1722L2.96988 13.2056C2.67988 12.9206 2.67988 12.4488 2.96988 12.1637L9.03988 6.19717C9.18988 6.04973 9.37988 5.98092 9.56988 5.98092Z"
+            fill="#2C2C2C"/>
+          <path
+            d="M3.67 11.9474L20.5 11.9474C20.91 11.9474 21.25 12.2816 21.25 12.6847C21.25 13.0877 20.91 13.4219 20.5 13.4219L3.67 13.4219C3.26 13.4219 2.92 13.0877 2.92 12.6847C2.92 12.2816 3.26 11.9474 3.67 11.9474Z"
+            fill="#2C2C2C"/>
+        </svg>
+      </div>
+      <div class="pagination-pages">
+        <a class="pagination-page" *ngFor="let page of pages"
+           [class.active]="activeParams.page ? activeParams.page === page : (page === 1)"
+           (click)="openPage(page)">
+          {{ page }}</a>
+      </div>
+      <div class="pagination-arrow" [class.disabled]="activeParams.page ? activeParams.page === pages.length : false" (click)="openNextPage()">
+        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M14.4301 19.3885C14.2401 19.3885 14.0501 19.3197 13.9001 19.1722C13.6101 18.8872 13.6101 18.4153 13.9001 18.1303L19.4401 12.6847L13.9001 7.23913C13.6101 6.95407 13.6101 6.48225 13.9001 6.19719C14.1901 5.91213 14.6701 5.91213 14.9601 6.19719L21.0301 12.1637C21.3201 12.4488 21.3201 12.9206 21.0301 13.2057L14.9601 19.1722C14.8101 19.3197 14.6201 19.3885 14.4301 19.3885Z"
+            fill="#2C2C2C"/>
+          <path
+            d="M20.33 13.4219H3.5C3.09 13.4219 2.75 13.0877 2.75 12.6847C2.75 12.2817 3.09 11.9475 3.5 11.9475H20.33C20.74 11.9475 21.08 12.2817 21.08 12.6847C21.08 13.0877 20.74 13.4219 20.33 13.4219Z"
+            fill="#2C2C2C"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>

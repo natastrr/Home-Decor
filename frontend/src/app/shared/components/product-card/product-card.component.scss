@@ -1,0 +1,109 @@
+@import '../../../../assets/styles/variables';
+
+.product-card {
+  width: 291px;
+  height: 498px;
+  box-sizing: border-box;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+
+  &.is-light {
+    height: unset;
+    cursor: pointer;
+  }
+
+  .product-card-fave {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    z-index: 2;
+
+    &:hover, &.in-fave:hover {
+      svg .heart {
+        fill: #b6d5b9;
+      }
+    }
+
+    &.in-fave {
+      svg {
+        .heart, .heart-fill {
+          fill: #b6d5b9;
+        }
+      }
+
+      &:hover {
+        svg .heart-fill {
+          fill: transparent;
+        }
+      }
+    }
+  }
+
+  .product-card-image {
+    width: 100%;
+    height: 291px;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .product-card-name {
+    min-height: 52px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    color: $green-text-color;
+    margin-top: 15px;
+  }
+
+  .product-card-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $gray;
+
+    .product-card-price {
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 130%;
+      color: $green-text-color;
+    }
+
+    button.button {
+      width: 166px;
+    }
+  }
+
+  .product-card-extra {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .product-card-detail {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      text-decoration: none;
+      user-select: none;
+
+      span {
+        font-size: 16px;
+        color: $green-gray-color;
+      }
+
+      &:hover {
+        span {
+          color: $buttons-color;
+        }
+
+        svg circle {
+          fill: $buttons-color;
+        }
+      }
+    }
+  }
+}

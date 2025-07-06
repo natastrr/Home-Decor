@@ -1,0 +1,132 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.detail {
+  padding: 101px 0 110px;
+
+  .container {
+    .detail-title {
+      @include head-lora-36;
+      margin: 0;
+    }
+
+    .detail-product {
+      padding: 30px 0 120px;
+      display: flex;
+      justify-content: space-between;
+
+      .detail-image {
+        width: 528px;
+        height: 528px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        flex-shrink: 0;
+      }
+
+      .detail-info {
+        max-width: 610px;
+        flex-shrink: 0;
+        flex-grow: 1;
+
+        .detail-info-items {
+          &:has(.detail-info-item) {
+            margin-bottom: 50px;
+          }
+
+          .detail-info-item {
+            display: flex;
+            gap: 25px;
+
+            svg {
+              flex-shrink: 0;
+            }
+
+            &:not(:first-child) {
+              padding-top: 20px;
+            }
+
+            &:not(:last-child) {
+              padding-bottom: 20px;
+              border-bottom: 1px solid $gray;
+            }
+
+            .detail-info-item-text {
+              .detail-info-item-title {
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                color: $green-text-color;
+                margin-bottom: 15px;
+              }
+
+              .detail-info-item-description {
+                margin: 0;
+                font-size: 16px;
+                color: $gray-text-color;
+                line-height: 130%;
+              }
+            }
+          }
+        }
+
+        .detail-info-param {
+          font-size: 16px;
+          font-weight: 500;
+
+          & + .detail-info-param {
+            margin-top: 12px;
+          }
+
+          span {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: 400;
+          }
+        }
+
+        .detail-info-params {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .detail-info-params-count {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            span {
+              font-weight: 500;
+              font-size: 16px;
+            }
+          }
+
+          .detail-info-params-price {
+            font-weight: 700;
+            font-size: 40px;
+            color: #313131;
+          }
+        }
+
+        .detail-info-actions {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-top: 22px;
+
+          .button {
+            flex-grow: 1;
+
+            &.fave-button {
+              width: 307px;
+            }
+
+            &.cart-button {
+              width: 290px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

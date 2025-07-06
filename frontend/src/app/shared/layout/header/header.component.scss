@@ -1,0 +1,232 @@
+@import "../../../../assets/styles/variables";
+
+header.header {
+  padding: 30px 0 49px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    .logo {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    .header-top {
+      padding: 32px 18px 25px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid $gray;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+
+      .header-top-menu {
+        margin-right: 231px;
+
+        nav ul {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          gap: 40px;
+          list-style: none;
+
+          li {
+            border-bottom: 1px solid transparent;
+
+            &.active {
+              border-color: $green-text-color;
+            }
+
+            &:hover {
+              a {
+                color: $buttons-color;
+              }
+            }
+
+            a {
+              font-size: 16px;
+              color: $green-text-color;
+              cursor: pointer;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+
+      .header-top-phone {
+        font-size: 16px;
+        color: $green-text-color;
+        text-decoration: none;
+        margin-right: 59px;
+        cursor: pointer;
+
+        &:hover {
+          color: $buttons-color;
+        }
+      }
+
+      .header-top-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        a {
+          position: relative;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          span {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            top: 10px;
+            right: -18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: $green-text-color;
+            border-radius: 50%;
+            background-color: $light-green-medium;
+          }
+
+          &:hover:not(:first-child) svg path {
+            fill: $buttons-color;
+          }
+
+          &:first-child:hover svg path {
+            stroke: $buttons-color;
+          }
+        }
+      }
+    }
+
+    .header-bottom {
+      padding-top: 16px;
+      display: flex;
+      align-items: center;
+
+      .header-bottom-menu {
+        margin-left: 26px;
+        margin-right: 97px;
+
+        nav ul {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          list-style: none;
+
+          li {
+            margin-right: 50px;
+            border-bottom: 1px solid transparent;
+
+            &.active {
+              border-color: $green-text-color;
+            }
+
+            &:hover {
+              a {
+                color: $buttons-color;
+              }
+            }
+
+            a {
+              font-size: 16px;
+              color: $green-text-color;
+              text-decoration: none;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .header-bottom-search {
+        position: relative;
+
+        input {
+          border: 1px solid $green-text-color;
+          border-radius: 30px;
+          padding: 10px 10px 10px 43px;
+          font-size: 16px;
+          font-family: "Montserrat", sans-serif;
+          font-weight: 400;
+          color: $green-text-color;
+          width: 214px;
+          height: 41px;
+          box-sizing: border-box;
+          outline: none;
+
+          &::placeholder {
+            color: $green-text-color;
+          }
+        }
+
+        &::after {
+          content: "";
+          background-image: url("../../../../assets/images/icons/search.svg");
+          background-size: cover;
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          left: 15px;
+          top: 12.5px;
+        }
+
+        .search-products {
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 400px;
+          background-color: white;
+          border-radius: 5px;
+          border: 1px solid #ebebeb;
+
+          .search-product {
+            padding: 12px 23px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            cursor: pointer;
+
+            .search-product-image {
+              width: 40px;
+              height: 40px;
+              border-radius: 5px;
+              background-size: cover;
+              background-position: center;
+            }
+
+            .search-product-name {
+              color: #8e8e8e;
+              font-size: 16px;
+              line-height: 130%;
+            }
+
+            &:hover {
+              background-color: #ebebeb;
+
+              .search-product-name {
+                color: black;
+              }
+            }
+
+            &:first-child {
+              border-top-left-radius: 4px;
+              border-top-right-radius: 4px;
+            }
+
+            &:last-child {
+              border-bottom-left-radius: 4px;
+              border-bottom-right-radius: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

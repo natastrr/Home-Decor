@@ -1,0 +1,11 @@
+<div class="count-selector">
+  <svg (click)="decreaseCount()" [class.disabled]="count <= 1" width="10" height="3" viewBox="0 0 10 3" fill="none"
+       xmlns="http://www.w3.org/2000/svg">
+    <path d="M9.14019 3V0H0V3H9.14019Z" fill="#9AA89B"/>
+  </svg>
+  <input type="number" class="small-input" min="0" step="1" [(ngModel)]="count" (change)="countChange()">
+  <svg (click)="increaseCount()" width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7.34934 12V7.20896H12.1406V4.81343H7.34934V0H4.95369V4.81343H0.140625V7.20896H4.95369V12H7.34934Z"
+          fill="#9AA89B"/>
+  </svg>
+</div>

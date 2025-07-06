@@ -1,0 +1,109 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.favorite {
+  padding: 50px 0 110px;
+
+  .container {
+
+    .favorite-title {
+      @include head-lora-36;
+      color: $green-text-color;
+      margin: 0 0 35px 0;
+    }
+
+    .favorite-empty {
+      margin: 30px 0;
+      user-select: none;
+
+      div {
+        font-size: 16px;
+        color: $gray-text-color;
+      }
+
+      .button {
+        margin-top: 30px;
+        width: 255px;
+      }
+    }
+
+    .favorite-products {
+
+      .favorite-product {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:first-child {
+          padding-bottom: 15px;
+        }
+
+        &:last-child {
+          padding-top: 15px;
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $filter-color;
+        }
+
+        &:not(:first-child, :last-child) {
+          padding: 15px 0;
+        }
+
+        .favorite-product-link {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          width: 640px;
+          flex-shrink: 0;
+          cursor: pointer;
+
+          .favorite-product-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+          }
+
+          .favorite-product-name {
+            font-size: 20px;
+            color: $gray-text-color;
+          }
+        }
+
+        .favorite-product-price {
+          width: 150px;
+          margin-right: 100px;
+          font-size: 22px;
+          color: $gray-text-color;
+          font-weight: 600;
+          text-align: center;
+          flex-shrink: 0;
+        }
+
+        .favorite-product-actions {
+          display: flex;
+          align-items: center;
+          gap: 25px;
+          width: 290px;
+
+          .button {
+            width: 160px;
+          }
+        }
+
+        svg {
+          margin-left: 30px;
+          flex-shrink: 0;
+          cursor: pointer;
+
+          &:hover line {
+            stroke: $buttons-color;
+          }
+        }
+      }
+    }
+  }
+}

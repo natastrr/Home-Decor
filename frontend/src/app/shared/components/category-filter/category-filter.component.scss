@@ -1,0 +1,65 @@
+@import "../../../../assets/styles/variables";
+
+.catalog-filter {
+  border-radius: 5px;
+  font-size: 16px;
+  color: $gray-text-color;
+  user-select: none;
+
+  .catalog-filter-head {
+    background-color: $light-green-medium;
+    border-radius: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 23px;
+    cursor: pointer;
+
+    svg {
+      position: relative;
+      top: 1px;
+    }
+  }
+
+  .catalog-filter-body {
+    display: none;
+    flex-direction: column;
+    gap: 19px;
+    border: 1px solid $light-green-medium;
+    border-radius: 0 0 5px 5px;
+    padding: 12px 16px;
+
+    .catalog-filter-checkbox {
+      display: flex;
+      align-items: baseline;
+      cursor: pointer;
+      line-height: 130%;
+      gap: 10px;
+
+      input:checked + span {
+        color: #519057;
+      }
+    }
+
+    .catalog-filter-from-to {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &.open {
+    .catalog-filter-head {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      svg {
+        rotate: 180deg;
+      }
+    }
+
+    .catalog-filter-body {
+      display: flex;
+    }
+  }
+}

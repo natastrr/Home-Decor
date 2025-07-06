@@ -1,0 +1,106 @@
+@import "../../../../assets/styles/variables";
+//@import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/personal";
+
+.orders {
+  padding: 56px 0 156px;
+
+  .container {
+    font-size: 16px;
+
+    .orders-title {
+      font-weight: 500;
+      color: $gray-text-color;
+      margin-bottom: 14px;
+    }
+
+    .orders-title-additional {
+      color: $gray-text-color;
+      margin-bottom: 67px;
+    }
+
+    .orders-empty {
+      margin-top: 30px;
+      margin-bottom: 100px;
+      user-select: none;
+
+      div {
+        font-size: 16px;
+        color: $gray-text-color;
+      }
+
+      .button {
+        margin-top: 30px;
+        width: 255px;
+      }
+    }
+
+    .orders-list {
+
+      .orders-list-item {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+
+        &:first-child {
+          padding-bottom: 46px;
+        }
+
+        &:last-child {
+          padding-top: 46px;
+        }
+
+        &:not(:first-child), &:not(:last-child) {
+          padding: 46px 0;
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $filter-color;
+        }
+
+        .orders-list-item-number {
+          font-size: 20px;
+          text-decoration: underline;
+          color: #111;
+          width: 300px;
+          margin-right: 20px;
+        }
+
+        .orders-list-item-products {
+          width: 500px;
+          margin-right: 20px;
+          color: #adadad;
+
+          .orders-list-item-products-count {
+            margin-bottom: 12px;
+          }
+
+          .orders-list-item-products-list tr td:first-child {
+            padding: 0 20px 0 10px;
+          }
+
+        }
+
+        .orders-list-item-status {
+          padding: 8px 24px;
+          width: 140px;
+          text-align: center;
+          border-radius: 50px;
+          border: 1px solid $buttons-color;
+          box-sizing: border-box;
+          background-color: transparent;
+          color: $buttons-color;
+          user-select: none;
+        }
+
+        .orders-list-item-price {
+          width: 180px;
+          text-align: right;
+          font-weight: 600;
+          font-size: 22px;
+          color: $gray-text-color;
+        }
+      }
+    }
+  }
+}
