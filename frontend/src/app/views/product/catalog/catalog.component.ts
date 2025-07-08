@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ProductService} from "../../../shared/services/product.service";
 import {ProductType} from "../../../../types/product.type";
 import {CategoryService} from "../../../shared/services/category.service";
@@ -37,6 +37,7 @@ export class CatalogComponent implements OnInit {
   pages: number[] = [];
   cart: CartType | null = null;
   favoriteProducts: FavoriteType[] | null = null;
+  selectedSortText: string = 'Сортировать';
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
@@ -85,6 +86,12 @@ export class CatalogComponent implements OnInit {
           .pipe(debounceTime(800))
           .subscribe((params: Params) => {
             this.activeParams = ActiveParamsUtil.processParams(params);
+            if (this.activeParams.sort) {
+              const selectedOption: {name: string, value: string} | undefined = this.sortingOptions.find((option: {name: string, value: string}) => option.value === this.activeParams.sort);
+              this.selectedSortText = selectedOption ? selectedOption.name : 'Сортировать';
+            } else {
+              this.selectedSortText = 'Сортировать';
+            }
             this.appliedFilters = [];
             this.activeParams.types.forEach((url: string) => {
               for (let i: number = 0; i < this.categoriesWithTypes.length; i++) {
@@ -176,6 +183,8 @@ export class CatalogComponent implements OnInit {
 
   sort(value: string): void {
     this.activeParams.sort = value;
+    const selectedOption: {name: string, value: string} | undefined = this.sortingOptions.find((option: {name: string, value: string}) => option.value === value);
+    if (selectedOption) this.selectedSortText = selectedOption.name;
     this.router.navigate(['/catalog'], {queryParams: this.activeParams}).then();
   }
 
@@ -194,7 +203,17 @@ export class CatalogComponent implements OnInit {
   openNextPage(): void {
     if (this.activeParams.page && this.activeParams.page < this.pages.length) {
       this.activeParams.page++;
-      this.router.navigate(['/catalog'], {queryParams: this.activeParams}).then();
+    } else {
+      this.activeParams.page = 2;
+    }
+    this.router.navigate(['/catalog'], {queryParams: this.activeParams}).then();
+  }
+
+  @HostListener('document:click', ['$event'])
+  click(event: Event): void {
+    if (this.sortingOpen && !(event.target as HTMLElement).closest('.catalog-sorting')) {
+      this.sortingOpen = false;
     }
   }
+
 }
